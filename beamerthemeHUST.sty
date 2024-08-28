@@ -1,0 +1,150 @@
+% 武汉（华中科技大学）beamer演示主题
+%
+% 赵展 <zhaozhan1111@gmail.com>, 2024
+% https://github.com/
+% 更新日志:
+%
+% 版本 1.0:
+%   初稿版本: 参考CCNU presentation Beamer。
+
+% 提供名为 'beamerthemeHUST' 的包，并设置版本日期
+\ProvidesPackage{beamerthemeHUST}[2024/08/27]
+
+% 设置字体主题，使标题字体加粗
+\usefonttheme[onlylarge]{structurebold}
+
+% 声明华中科技大学的 logo 图像，设置高度为5cm
+\pgfdeclareimage[height=5cm]{HUST-logo}{HUST-logo.png}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% 颜色设置
+%%%%%%%%%%%%%%%%%%%%%%%
+% 定义HUST（华中科技大学）主题颜色
+\definecolor{HUSTMaize}{RGB}{0, 149, 182}
+\definecolor{HUSTBlue}{cmyk}{1,0.6,0,0.6}
+\definecolor{SubduedBlue}{RGB}{107,142,168}
+\definecolor{HUSTFootcolor}{RGB}{100,100,100}
+
+% 定义水平渐变阴影效果
+\pgfdeclarehorizontalshading{doubleShade}
+  {1.5pt}{color(0cm)=(white); color(.5\textwidth)=(gray); color(\textwidth)=(white)}
+\pgfdeclarehorizontalshading{singleShade}
+  {.5pt}{color(0cm)=(gray); color(.8\textwidth)=(gray); color(\textwidth)=(white)}
+\pgfdeclarehorizontalshading{footShade}
+  {.75pt}{color(0cm)=(gray); color(.8\textwidth)=(white); color(\textwidth)=(gray)}
+
+% 使用HUST的主题颜色来设置Beamer演示文稿的颜色
+\usecolortheme[named=HUSTMaize]{structure}
+\usecolortheme{rose}
+\setbeamercolor{item}{fg=SubduedBlue}
+\setbeamercolor{title}{fg=white,bg=HUSTMaize}
+\setbeamercolor{shorttitle}{fg=HUSTMaize,bg=red!20!white}
+\setbeamercolor{block title}{fg=HUSTMaize,bg=HUSTMaize!15!white}
+\setbeamercolor{block body}{bg=HUSTMaize!5!white}
+\setbeamercolor{normal text}{fg=HUSTBlue,bg=white}
+\setbeamercolor{section in head/foot}{parent=palette tertiary, fg=HUSTMaize}
+\setbeamercolor{separator}{fg=HUSTMaize}
+\setbeamercolor{page number in head/foot}{bg=HUSTMaize!30!white,fg=HUSTMaize}
+\setbeamercolor{footline}{bg=HUSTMaize!30!white,fg=HUSTMaize}
+\setbeamercolor{mini frame}{fg=SubduedBlue}
+\setbeamertemplate{mini frame in other subsection}[default][40]
+
+% 设置作者字体颜色为HUST Blue
+\setbeamercolor{author}{fg=HUSTBlue}
+% 设置标题、作者、机构和日期的字体样式
+\setbeamerfont{title}{size=\Large,family=\sffamily,shape=\scshape}
+\setbeamerfont{shorttitle}{size=\Large,family=\sffamily,shape=\scshape}
+\setbeamerfont{author}{size=\normalsize,family=\sffamily,shape=\itshape}
+\setbeamerfont{institute}{series=\bfseries,size=\small,family=\sffamily,shape=\slshape}
+\setbeamerfont{date}{size=\scriptsize,family=\sffamily,shape=\upshape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% 内部主题
+%%%%%%%%%%%%%%%%%%%%%%%%
+% 使用 pifont 包来提供符号字体
+\RequirePackage{pifont}
+% 使用圆角内部主题
+\useinnertheme{rounded}
+% 为项目符号列表项设置特殊符号
+\setbeamertemplate{itemize items}{\ding{113}}
+% 设置编号列表项的样式为默认样式
+\setbeamertemplate{enumerate items}[default]
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% 外部主题
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 移除导航符号（如“返回”、“前进”等按钮）
+\setbeamertemplate{navigation symbols}{}
+
+% 设置每页幻灯片标题栏样式
+\setbeamertemplate{frametitle}{
+\vskip-2pt\hskip-20pt\insertframetitle
+}
+
+% 设置页面顶部的页眉样式
+\setbeamertemplate{headline}{%
+\hypersetup{linkcolor=.}
+\vskip1pt\hskip2pt%
+\insertsectionnavigationhorizontal{.5\textwidth}{\hskip0pt plus1filll}{}
+\vskip1pt\pgfuseshading{doubleShade}\vskip1pt%
+\vskip-10pt\hfill{\makebox[40pt][r]{\usebeamercolor[fg]{page number in head/foot}\large\insertframenumber/\inserttotalframenumber\hspace{4pt}}}
+}
+
+% 设置节和小节在页眉和页脚中的显示样式
+\setbeamertemplate{section in head/foot}{\insertsectionhead\space}
+\setbeamertemplate{subsection in head/foot}{\guillemotright\space\insertsubsectionhead}
+\setbeamertemplate{section in head/foot shaded}{\color{gray}\usebeamertemplate{section in head/foot}}
+
+% 设置页脚样式，包括作者、标题、日期等信息
+\setbeamertemplate{footline}{%
+\hypersetup{linkcolor=.}
+\hskip5pt\makebox[50pt][l]{\color{HUSTFootcolor}\insertshortauthor{ [}\insertshortinstitute{]}}\hfill\makebox[110pt][c]{\color{HUSTFootcolor}{\insertshorttitle}}\hfill\makebox[10pt][l]{\color{HUSTFootcolor}\insertshortdate}\hspace{28pt}
+}
+
+% 设置标题页的页眉样式，插入华中科技大学的logo
+\titlegraphic{
+\includegraphics[height=1.5cm]{HUST-logo.png}
+}
+
+% 设置标题页样式
+\setbeamertemplate{title page}
+{
+\hfill\pgfuseimage{HUST-logo}
+\vskip25pt
+\begin{center}
+\usebeamerfont*{title}\usebeamercolor[fg]{title}\inserttitle\par
+\bigskip
+\usebeamerfont*{author}\usebeamercolor[fg]{author}\insertauthor\par
+\smallskip
+\usebeamerfont*{institute}\insertinstitute\par
+\bigskip
+\bigskip
+\usebeamerfont*{date}\insertdate
+\end{center}
+\vskip0pt plus 1filll
+\setcounter{framenumber}{0}
+}
+
+% 设置另一种标题页样式，包含有阴影和圆角的标题框
+\setbeamertemplate{title page}
+{
+\vskip45pt
+\begin{center}
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\inserttitle\par%
+  \end{beamercolorbox}
+\bigskip
+\usebeamerfont*{author}\usebeamercolor[fg]{author}\insertauthor\par
+\smallskip
+\usebeamerfont*{institute}\insertinstitute\par
+\bigskip
+\bigskip
+\usebeamerfont*{date}\insertdate
+\par
+\bigskip
+\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+\end{center}
+\vskip0pt plus 1filll
+\setcounter{framenumber}{0}
+}
