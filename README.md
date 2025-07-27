@@ -7,3 +7,6 @@ Modified from Dongliang Zhang's CCNU presentation Beamer.
 Original template link: https://github.com/dajiaonao/beamerthemeCCNU.
 # Attention
 The compiler cannot be latex, it needs to be pdflatex or xelatex, etc.
+# Example
+Title page:  
+![title-page](Figures/title_page.png)  
